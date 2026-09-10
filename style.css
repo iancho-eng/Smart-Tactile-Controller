@@ -1,0 +1,310 @@
+/* ---------------------------------------------------------------
+   Design tokens — grounded in an actual PCB: soldermask green,
+   copper traces, silkscreen white, gold pads.
+   --------------------------------------------------------------- */
+:root {
+  --solder-dark: #0b241c;
+  --solder: #103829;
+  --solder-line: #1d5540;
+  --copper: #c17a3d;
+  --copper-bright: #e0954f;
+  --gold: #d9b36c;
+  --silk: #ece6d8;
+  --silk-dim: #9fb0a6;
+
+  --font-display: 'Space Grotesk', system-ui, sans-serif;
+  --font-body: 'Inter', system-ui, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, monospace;
+
+  --content-width: 960px;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+body {
+  margin: 0;
+  background: var(--solder-dark);
+  color: var(--silk);
+  font-family: var(--font-body);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--content-width);
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+a { color: var(--copper-bright); text-decoration: none; }
+a:hover { color: var(--gold); }
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--copper-bright);
+  outline-offset: 3px;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  color: var(--silk);
+  margin: 0;
+  font-weight: 600;
+}
+
+/* ---------------------------------------------------------------
+   Top bar — reads like a silkscreen board label, not a nav bar
+   --------------------------------------------------------------- */
+.topbar {
+  border-bottom: 1px solid var(--solder-line);
+  padding: 18px 0;
+  position: sticky;
+  top: 0;
+  background: rgba(11, 36, 28, 0.92);
+  backdrop-filter: blur(6px);
+  z-index: 10;
+}
+.topbar-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.board-label {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  color: var(--silk-dim);
+}
+.topnav {
+  display: flex;
+  flex-wrap: wrap;
+}
+.topnav a {
+  color: var(--silk-dim);
+  font-size: 0.92rem;
+  margin-left: 22px;
+}
+.topnav a:first-child { margin-left: 0; }
+.topnav a:hover { color: var(--copper-bright); }
+.topnav .repo-link { color: var(--copper); }
+
+/* ---------------------------------------------------------------
+   Hero
+   --------------------------------------------------------------- */
+.hero { padding: 72px 0 64px; }
+.hero-inner {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 56px;
+  align-items: center;
+}
+.kicker {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--copper);
+  margin: 0 0 18px;
+}
+.hero h1 {
+  font-size: clamp(2rem, 4vw, 2.9rem);
+  line-height: 1.12;
+  letter-spacing: -0.01em;
+}
+.hero-sub {
+  color: var(--silk-dim);
+  font-size: 1.05rem;
+  max-width: 46ch;
+  margin: 22px 0 0;
+}
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  margin-top: 32px;
+  flex-wrap: wrap;
+}
+.btn {
+  display: inline-block;
+  padding: 12px 22px;
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: 0.95rem;
+  border-radius: 3px;
+  border: 1px solid transparent;
+}
+.btn-primary {
+  background: var(--copper);
+  color: var(--solder-dark);
+}
+.btn-primary:hover { background: var(--copper-bright); color: var(--solder-dark); }
+.btn-ghost {
+  border-color: var(--solder-line);
+  color: var(--silk);
+}
+.btn-ghost:hover { border-color: var(--copper); color: var(--copper-bright); }
+
+.hero-media img {
+  width: 100%;
+  display: block;
+  border: 1px solid var(--solder-line);
+  border-radius: 4px;
+  background: #fff;
+}
+.media-caption {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--silk-dim);
+  margin: 10px 2px 0;
+}
+
+/* ---------------------------------------------------------------
+   Generic sections
+   --------------------------------------------------------------- */
+.section { padding: 64px 0; }
+.section-alt { background: var(--solder); }
+.section h2 {
+  font-size: 1.6rem;
+  margin-bottom: 28px;
+}
+.section-lede {
+  color: var(--silk-dim);
+  max-width: 62ch;
+  margin: -12px 0 32px;
+}
+.prose p {
+  max-width: 68ch;
+  color: var(--silk-dim);
+}
+.prose p + p { margin-top: 16px; }
+
+/* ---------------------------------------------------------------
+   Spec sheet — datasheet-style key/value rows
+   --------------------------------------------------------------- */
+.spec-sheet {
+  margin: 0;
+  border-top: 1px solid var(--solder-line);
+}
+.spec-row {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  gap: 24px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--solder-line);
+}
+.spec-row dt {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: var(--copper);
+}
+.spec-row dd {
+  margin: 0;
+  color: var(--silk);
+}
+
+/* ---------------------------------------------------------------
+   Figures
+   --------------------------------------------------------------- */
+.figure { margin: 0; }
+.figure img {
+  width: 100%;
+  display: block;
+  border: 1px solid var(--solder-line);
+  border-radius: 4px;
+  background: #fff;
+}
+.figure figcaption {
+  font-family: var(--font-mono);
+  font-size: 0.78rem;
+  color: var(--silk-dim);
+  margin-top: 10px;
+}
+
+/* ---------------------------------------------------------------
+   Build steps — genuinely sequential, so numbering is earned
+   --------------------------------------------------------------- */
+.build-steps {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--solder-line);
+}
+.build-steps li {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  gap: 20px;
+  padding: 26px 0;
+  border-bottom: 1px solid var(--solder-line);
+}
+.step-index {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  color: var(--copper);
+  padding-top: 2px;
+}
+.build-steps h3 {
+  font-size: 1.05rem;
+  margin-bottom: 8px;
+}
+.build-steps p {
+  color: var(--silk-dim);
+  margin: 0;
+  max-width: 62ch;
+}
+.build-steps strong { color: var(--gold); font-weight: 600; }
+
+/* ---------------------------------------------------------------
+   BOM table
+   --------------------------------------------------------------- */
+.table-scroll { overflow-x: auto; }
+.bom-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-mono);
+  font-size: 0.88rem;
+  min-width: 520px;
+}
+.bom-table th, .bom-table td {
+  text-align: left;
+  padding: 11px 14px;
+  border-bottom: 1px solid var(--solder-line);
+}
+.bom-table th {
+  color: var(--copper);
+  font-weight: 500;
+  border-bottom: 1px solid var(--solder-line);
+}
+.bom-table td { color: var(--silk-dim); }
+.bom-table tr:hover td { color: var(--silk); }
+
+/* ---------------------------------------------------------------
+   Footer
+   --------------------------------------------------------------- */
+.site-footer {
+  border-top: 1px solid var(--solder-line);
+  padding: 32px 0 48px;
+}
+.footer-inner {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+.footer-inner p {
+  color: var(--silk-dim);
+  font-size: 0.88rem;
+  margin: 0;
+}
+
+/* ---------------------------------------------------------------
+   Responsive
+   --------------------------------------------------------------- */
+@media (max-width: 760px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 36px; }
+  .spec-row { grid-template-columns: 1fr; gap: 4px; }
+  .build-steps li { grid-template-columns: 40px 1fr; }
+}
