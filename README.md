@@ -8,7 +8,7 @@ A five-key USB-C macro pad built around an ESP32-C3 — from KiCad schematic to 
 
 <p align="center">
   <img src="assets/pcb-layout.png" alt="KiCad PCB layout showing routed traces" width="47%">
-  <img src="assets/schematic.png" alt="KiCad schematic of the ESP32-C3 power and switch circuitry" width="47%">
+  <img src="assets/Schematic.png" alt="KiCad schematic of the ESP32-C3 power and switch circuitry" width="47%">
 </p>
 
 ---
