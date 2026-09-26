@@ -1,50 +1,69 @@
 # Smart Tactile Controller
 
-A five-key USB-C macro pad built around an ESP32-C3 — from KiCad schematic to
-fabricated PCB and 3D-printed enclosure.
+A five-key USB-C macro pad built around an ESP32-C3 — from KiCad schematic to fabricated PCB and 3D-printed enclosure.
 
-**[View the project page →](https://YOUR-USERNAME.github.io/smart-tactile-controller/)**
+<p align="center">
+  <img src="assets/pcb-3d-render.png" alt="3D render of the assembled PCB with Cherry MX switches and USB-C connector" width="480">
+</p>
 
-## What's in this repo
+<p align="center">
+  <img src="assets/pcb-layout.png" alt="KiCad PCB layout showing routed traces" width="47%">
+  <img src="assets/schematic.png" alt="KiCad schematic of the ESP32-C3 power and switch circuitry" width="47%">
+</p>
 
-| Path | Contents |
-|---|---|
-| `index.html`, `style.css` | The GitHub Pages project site |
-| `assets/` | Schematic and PCB layout images used on the site |
-| `hardware/` | *(add your `.kicad_sch` / `.kicad_pcb` files here)* |
+---
 
-## Spec sheet
+## Overview
 
-- **MCU** — ESP32-C3-MINI-1 (RISC-V, Wi-Fi + BLE)
-- **Power** — USB-C, 5V in → AP2112K-3.3 LDO → 3.3V rail
-- **Input** — 5× Cherry MX-compatible switches, 19.05mm pitch
-- **PCB** — 2-layer, 58 × 85mm, 0402 SMD passives
-- **Enclosure** — 3D-printed, modeled in Fusion 360
-- **Fabrication** — PCBWay, $5 per board
+The Smart Tactile Controller is a compact 5-key macro pad powered by an **ESP32-C3-MINI-1** module, giving it onboard Wi-Fi and BLE for wireless macro/HID use in addition to wired USB-C. The full design — schematic, PCB layout, and enclosure — was taken from concept to a fabricated, assembled board.
 
-## Deploying this page on GitHub Pages
+## Key Specifications
 
-1. Push this repo to GitHub.
-2. Go to **Settings → Pages**.
-3. Under **Build and deployment**, set **Source** to `Deploy from a branch`.
-4. Pick the `main` branch and the `/ (root)` folder, then **Save**.
-5. GitHub gives you a live URL within a minute or two, at
-   `https://YOUR-USERNAME.github.io/REPO-NAME/`.
+| Property         | Value                                              |
+| ----------------- | --------------------------------------------------- |
+| MCU               | ESP32-C3-MINI-1 (RISC-V, Wi-Fi + BLE)               |
+| Power             | USB-C input via AP2112K-3.3 LDO regulator            |
+| Input             | 5 × Cherry MX–compatible mechanical switches         |
+| PCB               | 2-layer, 58 × 85 mm, 0402/0603 SMD components        |
+| Enclosure         | 3D-printed, custom-designed                          |
+| Cost              | ~$5 per board (PCBWay)                               |
 
-No build step needed — it's a static `index.html` + `style.css` site.
+## Hardware Files
 
-## Local preview
+| File                                             | Description                                    |
+| -------------------------------------------------- | ------------------------------------------------- |
+| [`hardware/Smart_Tactile_Controller.kicad_sch`](hardware/Smart_Tactile_Controller.kicad_sch) | Full schematic (ESP32-C3, LDO regulator, USB-C, switch matrix) |
+| [`hardware/Smart_Tactile_Controller.kicad_pcb`](hardware/Smart_Tactile_Controller.kicad_pcb) | Routed 2-layer PCB layout                        |
+| [`hardware/Smart_Tactile_Controller_Print.stl`](hardware/Smart_Tactile_Controller_Print.stl) | 3D-printable enclosure                           |
 
-Open `index.html` directly in a browser, or serve it locally:
+Open the `.kicad_sch` / `.kicad_pcb` files in **KiCad 10** to view or edit the design. The `.stl` can be sliced directly for 3D printing.
+
+## GitHub Pages Deployment
+
+This repo can be hosted as a static project site via GitHub Pages:
+
+1. Push to the `main` branch.
+2. In the repo settings, go to **Pages** and set the source to `main` / root (or `/docs` if you move `index.html` there).
+3. The site will be published at `https://iancho-eng.github.io/Smart-Tactile-Controller/`.
+
+### Local Preview
+
+To preview the site locally before pushing:
 
 ```bash
 python3 -m http.server 8000
-# then visit http://localhost:8000
 ```
+
+Then open `http://localhost:8000` in your browser.
 
 ## License
 
-Add a `LICENSE` file here if you want to make the hardware/design files
-reusable (the [CERN-OHL](https://cern-ohl.web.cern.ch/) or
-[MIT](https://choosealicense.com/licenses/mit/) licenses are common choices
-for open hardware projects).
+Consider adding a [CERN-OHL](https://cern-ohl.web.cern.ch/) or MIT license to make the hardware design freely reusable by others.
+
+## Status
+
+- [x] Schematic designed in KiCad
+- [x] PCB routed (2-layer)
+- [x] Enclosure designed and 3D printed
+- [x] Board fabricated and assembled
+- [ ] Firmware / HID mapping documented
